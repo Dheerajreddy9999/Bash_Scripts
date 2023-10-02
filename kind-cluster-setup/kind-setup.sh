@@ -1,5 +1,9 @@
 #!/bin/bash
 
+set -x #debug mode
+set -e #exit the script when there is an error
+set -o pipefail
+
 nt=$(docker network inspect -f '{{.IPAM.Config}}' kind | awk '{print $1}' | awk -F'.' '{print $2}')
 
 IMAGE="kindest/node:v1.27.3@sha256:3966ac761ae0136263ffdb6cfd4db23ef8a83cba8a463690e98317add2c9ba72 "
